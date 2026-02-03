@@ -17,7 +17,7 @@ body {
     display: none !important;
 }
 
-/* ---------- USERNAME PAGE ---------- */
+/* USERNAME PAGE */
 #username-page {
     width: 100%;
     display: flex;
@@ -34,33 +34,10 @@ body {
     text-align: center;
 }
 
-.title {
-    color: #fff;
-    margin-bottom: 20px;
-}
-
-.form-control {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    margin-bottom: 15px;
-}
-
-.username-submit {
-    width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background: #00e676;
-    font-weight: 600;
-}
-
-/* ---------- CHAT ---------- */
+/* CHAT CONTAINER */
 .chat-container {
-    width: 100%;
-    max-width: 420px;
-    height: 92%;
+    width: 360px;
+    height: 520px;              /* 🔥 FIXED SIZE */
     background: #fff;
     border-radius: 20px;
     display: flex;
@@ -70,14 +47,14 @@ body {
 
 /* HEADER */
 .chat-header {
-    padding: 16px;
-    text-align: center;
+    padding: 14px;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: #fff;
+    text-align: center;
     font-weight: 600;
 }
 
-/* MESSAGES */
+/* MESSAGE AREA */
 #messageArea {
     flex: 1;
     list-style: none;
@@ -86,11 +63,11 @@ body {
     overflow-y: auto;
 }
 
-/* SYSTEM */
+/* SYSTEM MESSAGE */
 .event-message {
     text-align: center;
     font-size: 13px;
-    color: #777;
+    color: #555;
     margin: 10px 0;
 }
 
@@ -99,7 +76,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     max-width: 75%;
 }
 
@@ -108,22 +85,20 @@ body {
     margin-left: auto;
 }
 
-/* NAME */
+/* SENDER NAME */
 .sender-name {
     font-size: 12px;
-    color: #666;
+    color: #555;
     margin-bottom: 3px;
 }
 
-/* BUBBLE (NO FULL WIDTH) */
+/* MESSAGE BUBBLE */
 .bubble {
-    display: inline-block;
-    padding: 10px 14px;
-    border-radius: 14px;
     background: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    word-wrap: break-word;
-    max-width: 100%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    word-break: break-word;
 }
 
 .chat-message.self .bubble {
@@ -131,35 +106,40 @@ body {
     color: #fff;
 }
 
-/* TIMESTAMP BELOW MESSAGE */
+/* TIMESTAMP — FORCED VISIBILITY */
 .timestamp {
     font-size: 11px;
-    color: #999;
+    color: #444;               /* 🔥 DARKER */
     margin-top: 4px;
+    padding-left: 6px;
 }
 
-/* INPUT */
+/* INPUT AREA — FIXED HEIGHT */
 #messageForm {
     padding: 12px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #ddd;
+    background: #fff;
 }
 
 .input-group {
     display: flex;
+    align-items: center;
 }
 
 .input-group input {
     flex: 1;
     padding: 12px;
     border-radius: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
+    font-size: 14px;
 }
 
 .input-group button {
     margin-left: 8px;
-    padding: 12px 18px;
+    padding: 12px 16px;
     border-radius: 12px;
     border: none;
     background: #667eea;
     color: #fff;
+    font-weight: 600;
 }

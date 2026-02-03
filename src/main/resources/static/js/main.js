@@ -12,7 +12,7 @@ var stompClient = null;
 var username = null;
 var lastSender = null;
 
-/* ---------- CONNECT ---------- */
+/* CONNECT */
 function connect(event) {
     event.preventDefault();
 
@@ -27,7 +27,7 @@ function connect(event) {
     stompClient.connect({}, onConnected, onError);
 }
 
-/* ---------- CONNECTED ---------- */
+/* CONNECTED */
 function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
 
@@ -39,13 +39,13 @@ function onConnected() {
     connectingElement.classList.add('hidden');
 }
 
-/* ---------- ERROR ---------- */
+/* ERROR */
 function onError() {
     connectingElement.textContent = 'Connection failed.';
     connectingElement.style.color = 'red';
 }
 
-/* ---------- SEND MESSAGE ---------- */
+/* SEND MESSAGE */
 function sendMessage(event) {
     event.preventDefault();
 
@@ -65,12 +65,11 @@ function sendMessage(event) {
     messageInput.value = '';
 }
 
-/* ---------- RECEIVE MESSAGE ---------- */
+/* RECEIVE MESSAGE */
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
     var li = document.createElement('li');
 
-    /* JOIN / LEAVE */
     if (message.type === 'JOIN' || message.type === 'LEAVE') {
         li.classList.add('event-message');
         li.textContent =
@@ -80,13 +79,9 @@ function onMessageReceived(payload) {
         return;
     }
 
-    /* CHAT MESSAGE */
     li.classList.add('chat-message');
+    if (message.sender === username) li.classList.add('self');
 
-    var isSelf = message.sender === username;
-    if (isSelf) li.classList.add('self');
-
-    /* SHOW NAME ONLY IF SENDER CHANGED */
     if (message.sender !== lastSender) {
         var sender = document.createElement('div');
         sender.classList.add('sender-name');
@@ -95,12 +90,10 @@ function onMessageReceived(payload) {
         lastSender = message.sender;
     }
 
-    /* MESSAGE BUBBLE */
     var bubble = document.createElement('div');
     bubble.classList.add('bubble');
     bubble.textContent = message.content;
 
-    /* TIMESTAMP (ALWAYS BELOW) */
     var time = document.createElement('div');
     time.classList.add('timestamp');
     time.textContent = message.time || '';
@@ -112,6 +105,6 @@ function onMessageReceived(payload) {
     messageArea.scrollTop = messageArea.scrollHeight;
 }
 
-/* ---------- EVENTS ---------- */
+/* EVENTS */
 usernameForm.addEventListener('submit', connect);
 messageForm.addEventListener('submit', sendMessage);
