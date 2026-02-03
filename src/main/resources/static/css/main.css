@@ -1,7 +1,7 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Inter', sans-serif;
 }
 
@@ -9,13 +9,15 @@ body {
     height: 100vh;
     background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-.hidden { display: none !important; }
+.hidden {
+    display: none !important;
+}
 
-/* LOGIN */
+/* ---------- USERNAME PAGE ---------- */
 #username-page {
     width: 100%;
     display: flex;
@@ -24,7 +26,7 @@ body {
 
 .username-page-container {
     background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(14px);
     padding: 40px;
     border-radius: 18px;
     width: 90%;
@@ -32,7 +34,10 @@ body {
     text-align: center;
 }
 
-.title { color: #fff; margin-bottom: 20px; }
+.title {
+    color: #fff;
+    margin-bottom: 20px;
+}
 
 .form-control {
     width: 100%;
@@ -51,7 +56,7 @@ body {
     font-weight: 600;
 }
 
-/* CHAT */
+/* ---------- CHAT ---------- */
 .chat-container {
     width: 100%;
     max-width: 420px;
@@ -63,6 +68,16 @@ body {
     overflow: hidden;
 }
 
+/* HEADER */
+.chat-header {
+    padding: 16px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* MESSAGES */
 #messageArea {
     flex: 1;
     list-style: none;
@@ -71,36 +86,44 @@ body {
     overflow-y: auto;
 }
 
-/* DATE */
-.date-divider {
+/* SYSTEM */
+.event-message {
     text-align: center;
-    font-size: 12px;
+    font-size: 13px;
     color: #777;
     margin: 10px 0;
 }
 
-/* MESSAGE */
+/* CHAT MESSAGE */
 .chat-message {
-    margin-bottom: 8px;
-    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    max-width: 75%;
 }
 
 .chat-message.self {
+    align-items: flex-end;
     margin-left: auto;
-    text-align: right;
 }
 
+/* NAME */
 .sender-name {
     font-size: 12px;
-    color: #555;
-    margin-bottom: 2px;
+    color: #666;
+    margin-bottom: 3px;
 }
 
+/* BUBBLE (NO FULL WIDTH) */
 .bubble {
-    background: #fff;
+    display: inline-block;
     padding: 10px 14px;
     border-radius: 14px;
+    background: #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .chat-message.self .bubble {
@@ -108,36 +131,21 @@ body {
     color: #fff;
 }
 
-.meta {
-    display: flex;
-    justify-content: flex-end;
+/* TIMESTAMP BELOW MESSAGE */
+.timestamp {
     font-size: 11px;
-    margin-top: 4px;
-    gap: 6px;
     color: #999;
-}
-
-.chat-message.self .meta {
-    color: #ddd;
+    margin-top: 4px;
 }
 
 /* INPUT */
 #messageForm {
-    padding: 10px;
+    padding: 12px;
     border-top: 1px solid #eee;
 }
 
 .input-group {
     display: flex;
-    align-items: center;
-}
-
-#emoji-btn {
-    font-size: 20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    margin-right: 6px;
 }
 
 .input-group input {
@@ -148,33 +156,10 @@ body {
 }
 
 .input-group button {
-    margin-left: 6px;
-    padding: 12px 16px;
+    margin-left: 8px;
+    padding: 12px 18px;
     border-radius: 12px;
     border: none;
     background: #667eea;
     color: #fff;
-}
-
-/* EMOJI PICKER */
-#emoji-box {
-    background: #fff;
-    padding: 10px;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 8px;
-    border-top: 1px solid #eee;
-}
-
-.emoji {
-    cursor: pointer;
-    font-size: 20px;
-}
-
-/* SYSTEM */
-.event-message {
-    text-align: center;
-    font-size: 13px;
-    color: #777;
-    margin: 10px 0;
 }
