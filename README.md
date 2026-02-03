@@ -64,6 +64,14 @@ spring-boot-chat-app/
 ├── pom.xml
 └── README.md
 
+## 📸 Screenshots
+
+### Username Page
+![Username Page](Screenshot%202026-02-03%20192706.png)
+
+### Chat Page
+![Chat Page](Screenshot%202026-02-03%20193035.png)
+
 
 
 
