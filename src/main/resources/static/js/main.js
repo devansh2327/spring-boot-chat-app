@@ -20,16 +20,15 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
     if (!username) return;
 
-    // 🔥 HIDE username form forever
-    usernamePage.style.display = 'none';
-
-    // 🔥 SHOW chat immediately
+    // SAME logic as your original working version
+    usernamePage.classList.add('hidden');
     chatPage.classList.remove('hidden');
 
     var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
     stompClient.connect({}, onConnected, onError);
 }
+
 
 /* ---------- CONNECTED ---------- */
 function onConnected() {
