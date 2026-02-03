@@ -2,7 +2,9 @@
 
 A modern **real-time chat application** built using **Spring Boot + WebSockets**, featuring a clean UI, smooth UX, and instant messaging without page reloads.
 
-> Minimal. Fast. Real-time.
+> Minimal
+> Fast
+> Real-time
 
 ---
 
