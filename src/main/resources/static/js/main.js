@@ -6,7 +6,6 @@ var usernameForm = document.querySelector('#usernameForm');
 var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
-var connectingElement = document.querySelector('.connecting');
 
 var stompClient = null;
 var username = null;
@@ -24,7 +23,7 @@ function connect(event) {
 
     var socket = new SockJS('/ws');
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, onConnected, onError);
+    stompClient.connect({}, onConnected);
 }
 
 /* CONNECTED */
@@ -35,14 +34,6 @@ function onConnected() {
         sender: username,
         type: 'JOIN'
     }));
-
-    connectingElement.classList.add('hidden');
-}
-
-/* ERROR */
-function onError() {
-    connectingElement.textContent = 'Connection failed.';
-    connectingElement.style.color = 'red';
 }
 
 /* SEND MESSAGE */
@@ -50,7 +41,7 @@ function sendMessage(event) {
     event.preventDefault();
 
     var content = messageInput.value.trim();
-    if (!content || !stompClient) return;
+    if (!content) return;
 
     stompClient.send("/app/chat.sendMessage", {}, JSON.stringify({
         sender: username,
@@ -72,8 +63,7 @@ function onMessageReceived(payload) {
 
     if (message.type === 'JOIN' || message.type === 'LEAVE') {
         li.classList.add('event-message');
-        li.textContent =
-            message.sender + (message.type === 'JOIN' ? ' joined the chat' : ' left the chat');
+        li.textContent = message.sender + ' joined the chat';
         messageArea.appendChild(li);
         lastSender = null;
         return;
@@ -96,7 +86,7 @@ function onMessageReceived(payload) {
 
     var time = document.createElement('div');
     time.classList.add('timestamp');
-    time.textContent = message.time || '';
+    time.textContent = message.time;
 
     li.appendChild(bubble);
     li.appendChild(time);

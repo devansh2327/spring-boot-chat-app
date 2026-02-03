@@ -5,7 +5,6 @@
     font-family: 'Inter', sans-serif;
 }
 
-/* ===== BASE BODY ===== */
 body {
     min-height: 100vh;
     background: linear-gradient(135deg, #667eea, #764ba2);
@@ -15,9 +14,8 @@ body {
     display: none !important;
 }
 
-/* =========================================================
-   USERNAME PAGE (FULL SCREEN CENTERED)
-   ========================================================= */
+/* ================= USERNAME PAGE ================= */
+
 #username-page {
     min-height: 100vh;
     display: flex;
@@ -26,43 +24,50 @@ body {
 }
 
 .username-page-container {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(14px);
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(16px);
     padding: 40px;
-    border-radius: 18px;
+    border-radius: 22px;
     width: 90%;
     max-width: 420px;
     text-align: center;
-    box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.35);
 }
 
-.username-page-container .title {
+.username-page-container h1 {
     color: #fff;
-    margin-bottom: 20px;
+    font-size: 34px;
+    margin-bottom: 10px;
 }
 
-.form-control {
+.username-page-container p {
+    color: #eee;
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.username-page-container input {
     width: 100%;
     padding: 14px;
-    border-radius: 12px;
+    border-radius: 14px;
     border: none;
-    margin-bottom: 15px;
     outline: none;
+    font-size: 15px;
+    margin-bottom: 16px;
 }
 
-.username-submit {
+.username-page-container button {
     width: 100%;
     padding: 14px;
-    border-radius: 12px;
+    border-radius: 14px;
     border: none;
     background: #00e676;
     font-weight: 600;
     cursor: pointer;
 }
 
-/* =========================================================
-   CHAT PAGE WRAPPER (CENTER CHAT BOX ONLY)
-   ========================================================= */
+/* ================= CHAT PAGE ================= */
+
 #chat-page {
     min-height: 100vh;
     display: flex;
@@ -70,9 +75,6 @@ body {
     align-items: center;
 }
 
-/* =========================================================
-   CHAT CONTAINER (FIXED SIZE)
-   ========================================================= */
 .chat-container {
     width: 380px;
     height: 600px;
@@ -86,24 +88,20 @@ body {
 
 /* HEADER */
 .chat-header {
-    padding: 14px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
+    padding: 16px;
     text-align: center;
     font-weight: 600;
-    flex-shrink: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
 }
 
-/* =========================================================
-   MESSAGE AREA (SCROLLS)
-   ========================================================= */
+/* MESSAGES */
 #messageArea {
     flex: 1;
     list-style: none;
     padding: 15px;
     background: #f5f7fb;
     overflow-y: auto;
-    overflow-x: hidden;
 }
 
 /* SYSTEM MESSAGE */
@@ -114,9 +112,7 @@ body {
     margin: 10px 0;
 }
 
-/* =========================================================
-   CHAT MESSAGE
-   ========================================================= */
+/* CHAT MESSAGE */
 .chat-message {
     display: flex;
     flex-direction: column;
@@ -130,7 +126,7 @@ body {
     margin-left: auto;
 }
 
-/* NAME */
+/* SENDER NAME */
 .sender-name {
     font-size: 12px;
     color: #555;
@@ -158,19 +154,15 @@ body {
     margin-top: 4px;
 }
 
-/* =========================================================
-   INPUT AREA (PINNED)
-   ========================================================= */
+/* INPUT */
 #messageForm {
     padding: 12px;
     border-top: 1px solid #ddd;
     background: #fff;
-    flex-shrink: 0;
 }
 
 .input-group {
     display: flex;
-    align-items: center;
 }
 
 .input-group input {
@@ -178,7 +170,6 @@ body {
     padding: 12px;
     border-radius: 12px;
     border: 1px solid #ccc;
-    font-size: 14px;
 }
 
 .input-group button {
@@ -189,5 +180,4 @@ body {
     background: #667eea;
     color: #fff;
     font-weight: 600;
-    cursor: pointer;
 }

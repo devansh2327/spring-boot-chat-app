@@ -3,101 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat-Shat 💬</title>
+    <title>Chat-Shat</title>
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Main CSS -->
     <link rel="stylesheet" href="/css/main.css">
 </head>
 
 <body>
 
-<noscript>
-    <h2>Your browser does not support JavaScript</h2>
-</noscript>
-
-<!-- ================= USERNAME PAGE ================= -->
+<!-- USERNAME PAGE -->
 <div id="username-page">
     <div class="username-page-container">
-        <h1 class="title">💬 Chat-Shat</h1>
-        <p class="subtitle">Enter your name to start chatting</p>
+        <h1>💬 Chat-Shat</h1>
+        <p>Enter your name to start chatting</p>
 
         <form id="usernameForm">
             <input
                     type="text"
                     id="name"
-                    class="form-control"
                     placeholder="Your name"
                     autocomplete="off"
                     required
             />
-            <button type="submit" class="username-submit">
-                Start Chat
-            </button>
+            <button type="submit">Start Chat</button>
         </form>
     </div>
 </div>
 
-<!-- ================= CHAT PAGE ================= -->
+<!-- CHAT PAGE -->
 <div id="chat-page" class="hidden">
     <div class="chat-container">
 
-        <!-- HEADER -->
         <div class="chat-header">
-            <span>💬 Chat-Shat</span>
-            <span class="online">
-                Online <span class="status-dot"></span>
-            </span>
+            Chat-Shat Online
         </div>
 
-        <!-- CONNECTING -->
-        <div class="connecting">
-            Connecting…
-        </div>
-
-        <!-- MESSAGES -->
         <ul id="messageArea"></ul>
 
-        <!-- EMOJI PICKER -->
-        <div id="emoji-box" class="hidden">
-            <span class="emoji">😀</span>
-            <span class="emoji">😂</span>
-            <span class="emoji">😍</span>
-            <span class="emoji">😎</span>
-            <span class="emoji">🔥</span>
-            <span class="emoji">👍</span>
-            <span class="emoji">🙏</span>
-            <span class="emoji">❤️</span>
-        </div>
-
-        <!-- INPUT -->
         <form id="messageForm">
             <div class="input-group">
-                <button type="button" id="emoji-btn">😄</button>
-
                 <input
                         type="text"
                         id="message"
-                        placeholder="Type a message…"
+                        placeholder="Type a message..."
                         autocomplete="off"
                         required
                 />
-
-                <button type="submit">
-                    Send
-                </button>
+                <button type="submit">Send</button>
             </div>
         </form>
 
     </div>
 </div>
 
-<!-- ================= SCRIPTS ================= -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="/js/main.js"></script>
-
 </body>
 </html>
