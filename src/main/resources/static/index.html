@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat-Shat</title>
+    <title>Chat-Shat 💬</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,43 +12,62 @@
 </head>
 
 <body>
+
 <noscript>
-    <h2>Sorry! Your browser doesn't support Javascript</h2>
+    <h2>Sorry! Your browser doesn't support JavaScript</h2>
 </noscript>
 
+<!-- USERNAME PAGE -->
 <div id="username-page">
     <div class="username-page-container">
-        <h1 class="title">Type your username to enter the Chatroom</h1>
-        <form id="usernameForm" name="usernameForm">
-            <div class="form-group">
-                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
-            </div>
-            <div class="form-group">
-                <button type="submit" class="accent username-submit">Start Chatting</button>
-            </div>
+        <h1 class="title">💬 Chat-Shat</h1>
+        <p class="subtitle">Enter a username to start chatting</p>
+
+        <form id="usernameForm">
+            <input
+                    type="text"
+                    id="name"
+                    placeholder="Your cool username 😎"
+                    autocomplete="off"
+                    class="form-control"
+                    required
+            />
+            <button type="submit" class="username-submit">Start Chat</button>
         </form>
     </div>
 </div>
 
+<!-- CHAT PAGE -->
 <div id="chat-page" class="hidden">
     <div class="chat-container">
-        <div class="chat-header">
-            <h2>Welcome to Dream Chat - By devansh</h2>
-        </div>
-        <div class="connecting">
-            Connecting...
-        </div>
-        <ul id="messageArea">
 
-        </ul>
-        <form id="messageForm" name="messageForm">
-            <div class="form-group">
-                <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                    <button type="submit" class="primary">Send</button>
-                </div>
+        <div class="chat-header">
+            <span>💬 Chat-Shat</span>
+            <span class="status">
+                Online <span class="status-dot"></span>
+            </span>
+        </div>
+
+        <div class="connecting">Connecting…</div>
+
+        <ul id="messageArea"></ul>
+
+        <div id="typing" class="typing hidden">
+            Someone is typing<span>.</span><span>.</span><span>.</span>
+        </div>
+
+        <form id="messageForm">
+            <div class="input-group">
+                <input
+                        type="text"
+                        id="message"
+                        placeholder="Type a message…"
+                        autocomplete="off"
+                />
+                <button type="submit">Send</button>
             </div>
         </form>
+
     </div>
 </div>
 
