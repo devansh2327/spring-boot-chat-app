@@ -64,8 +64,7 @@ spring-boot-chat-app/
 ├── pom.xml
 └── README.md
 
-<img width="913" height="635" alt="Screenshot 2026-02-03 192706" src="https://github.com/user-attachments/assets/df91412b-77a0-432d-b820-0499c456b59e" />
-<img width="676" height="853" alt="image" src="https://github.com/user-attachments/assets/46e8223d-184a-4d92-baa8-207974dd5939" />
+
 
 
 
