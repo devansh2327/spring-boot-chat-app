@@ -20,7 +20,7 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
     if (!username) return;
 
-    // SAME logic as your original working version
+    // show chat, hide username page
     usernamePage.classList.add('hidden');
     chatPage.classList.remove('hidden');
 
@@ -28,7 +28,6 @@ function connect(event) {
     stompClient = Stomp.over(socket);
     stompClient.connect({}, onConnected, onError);
 }
-
 
 /* ---------- CONNECTED ---------- */
 function onConnected() {
@@ -74,23 +73,37 @@ function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
     var li = document.createElement('li');
 
+    // JOIN / LEAVE messages
     if (message.type === 'JOIN' || message.type === 'LEAVE') {
         li.classList.add('event-message');
         li.textContent =
             message.sender +
-            (message.type === 'JOIN' ? ' joined' : ' left');
-    } else {
+            (message.type === 'JOIN' ? ' joined the chat' : ' left the chat');
+    }
+    // CHAT messages
+    else {
         li.classList.add('chat-message');
-        if (message.sender === username) li.classList.add('self');
 
+        if (message.sender === username) {
+            li.classList.add('self');
+        }
+
+        // sender name
+        var sender = document.createElement('div');
+        sender.classList.add('sender-name');
+        sender.textContent = message.sender;
+
+        // message bubble
         var bubble = document.createElement('p');
         bubble.textContent = message.content;
 
+        // timestamp
         var time = document.createElement('div');
         time.classList.add('timestamp');
         time.textContent = message.time || '';
 
         bubble.appendChild(time);
+        li.appendChild(sender);
         li.appendChild(bubble);
     }
 
