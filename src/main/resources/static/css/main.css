@@ -5,48 +5,104 @@
     font-family: 'Inter', sans-serif;
 }
 
+/* ===== BASE BODY ===== */
 body {
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(135deg, #667eea, #764ba2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden; /* 🔥 PREVENT PAGE SCROLL */
 }
 
 .hidden {
     display: none !important;
 }
 
-/* ================= CHAT CONTAINER ================= */
+/* =========================================================
+   USERNAME PAGE (FULL SCREEN CENTERED)
+   ========================================================= */
+#username-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.username-page-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(14px);
+    padding: 40px;
+    border-radius: 18px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+}
+
+.username-page-container .title {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.username-submit {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    background: #00e676;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================================================
+   CHAT PAGE WRAPPER (CENTER CHAT BOX ONLY)
+   ========================================================= */
+#chat-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================================================
+   CHAT CONTAINER (FIXED SIZE)
+   ========================================================= */
 .chat-container {
     width: 380px;
-    height: 600px;              /* 🔥 FIXED HEIGHT */
-    background: #ffffff;
+    height: 600px;
+    background: #fff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;           /* 🔥 CONTENT CANNOT ESCAPE */
+    overflow: hidden;
     box-shadow: 0 25px 50px rgba(0,0,0,0.25);
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 .chat-header {
-    flex-shrink: 0;
-    padding: 16px;
+    padding: 14px;
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: #fff;
     text-align: center;
     font-weight: 600;
+    flex-shrink: 0;
 }
 
-/* ================= MESSAGE AREA ================= */
+/* =========================================================
+   MESSAGE AREA (SCROLLS)
+   ========================================================= */
 #messageArea {
-    flex: 1;                    /* 🔥 TAKE REMAINING SPACE */
-    padding: 15px;
+    flex: 1;
     list-style: none;
+    padding: 15px;
     background: #f5f7fb;
-    overflow-y: auto;           /* 🔥 SCROLL HERE */
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -58,7 +114,9 @@ body {
     margin: 10px 0;
 }
 
-/* ================= CHAT MESSAGE ================= */
+/* =========================================================
+   CHAT MESSAGE
+   ========================================================= */
 .chat-message {
     display: flex;
     flex-direction: column;
@@ -79,7 +137,7 @@ body {
     margin-bottom: 3px;
 }
 
-/* MESSAGE BUBBLE */
+/* BUBBLE */
 .bubble {
     padding: 10px 14px;
     border-radius: 16px;
@@ -100,12 +158,14 @@ body {
     margin-top: 4px;
 }
 
-/* ================= INPUT AREA ================= */
+/* =========================================================
+   INPUT AREA (PINNED)
+   ========================================================= */
 #messageForm {
-    flex-shrink: 0;
     padding: 12px;
     border-top: 1px solid #ddd;
     background: #fff;
+    flex-shrink: 0;
 }
 
 .input-group {
