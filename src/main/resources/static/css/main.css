@@ -99,10 +99,12 @@ body {
 }
 
 .chat-message {
-    margin-bottom: 14px;
+    margin-bottom: 16px;
+    max-width: 80%;
 }
 
 .chat-message.self {
+    margin-left: auto;
     text-align: right;
 }
 
@@ -115,30 +117,28 @@ body {
 }
 
 .chat-message.self .sender-name {
-    color: #ddd;
+    color: #aaa;
 }
 
 /* bubble */
-.chat-message p {
-    display: inline-block;
+.bubble {
     background: #fff;
     padding: 10px 14px;
     border-radius: 14px;
-    max-width: 260px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    word-wrap: break-word;
 }
 
-.chat-message.self p {
+.chat-message.self .bubble {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: #fff;
 }
 
-/* timestamp */
+/* timestamp BELOW message */
 .timestamp {
     font-size: 11px;
-    color: #aaa;
+    color: #999;
     margin-top: 4px;
-    text-align: right;
 }
 
 /* system messages */
@@ -176,13 +176,6 @@ body {
     color: #fff;
     font-weight: 600;
     cursor: pointer;
-}
-
-/* typing */
-.typing {
-    padding: 6px 14px;
-    font-size: 13px;
-    color: #777;
 }
 
 /* connecting */

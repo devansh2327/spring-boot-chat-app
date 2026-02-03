@@ -7,11 +7,9 @@ var messageForm = document.querySelector('#messageForm');
 var messageInput = document.querySelector('#message');
 var messageArea = document.querySelector('#messageArea');
 var connectingElement = document.querySelector('.connecting');
-var typingElement = document.querySelector('#typing');
 
 var stompClient = null;
 var username = null;
-var typingTimeout = null;
 
 /* ---------- CONNECT ---------- */
 function connect(event) {
@@ -20,7 +18,7 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
     if (!username) return;
 
-    // show chat, hide username page
+    // Hide username page, show chat
     usernamePage.classList.add('hidden');
     chatPage.classList.remove('hidden');
 
@@ -83,7 +81,6 @@ function onMessageReceived(payload) {
     // CHAT messages
     else {
         li.classList.add('chat-message');
-
         if (message.sender === username) {
             li.classList.add('self');
         }
@@ -93,32 +90,24 @@ function onMessageReceived(payload) {
         sender.classList.add('sender-name');
         sender.textContent = message.sender;
 
-        // message bubble
-        var bubble = document.createElement('p');
+        // bubble
+        var bubble = document.createElement('div');
+        bubble.classList.add('bubble');
         bubble.textContent = message.content;
 
-        // timestamp
+        // timestamp BELOW message
         var time = document.createElement('div');
         time.classList.add('timestamp');
         time.textContent = message.time || '';
 
-        bubble.appendChild(time);
         li.appendChild(sender);
         li.appendChild(bubble);
+        li.appendChild(time);
     }
 
     messageArea.appendChild(li);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
-
-/* ---------- TYPING INDICATOR ---------- */
-messageInput.addEventListener('input', () => {
-    typingElement.classList.remove('hidden');
-    clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(() => {
-        typingElement.classList.add('hidden');
-    }, 800);
-});
 
 /* ---------- EVENTS ---------- */
 usernameForm.addEventListener('submit', connect);
