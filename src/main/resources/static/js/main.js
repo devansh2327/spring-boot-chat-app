@@ -11,6 +11,9 @@ var connectingElement = document.querySelector('.connecting');
 var stompClient = null;
 var username = null;
 
+var lastSender = null;
+var lastDateLabel = null;
+
 /* ---------- CONNECT ---------- */
 function connect(event) {
     event.preventDefault();
@@ -18,7 +21,6 @@ function connect(event) {
     username = document.querySelector('#name').value.trim();
     if (!username) return;
 
-    // Hide username page, show chat
     usernamePage.classList.add('hidden');
     chatPage.classList.remove('hidden');
 
@@ -41,8 +43,7 @@ function onConnected() {
 
 /* ---------- ERROR ---------- */
 function onError() {
-    connectingElement.textContent =
-        'Could not connect. Please refresh and try again.';
+    connectingElement.textContent = 'Connection failed. Refresh and try again.';
     connectingElement.style.color = 'red';
 }
 
@@ -57,10 +58,9 @@ function sendMessage(event) {
         sender: username,
         content: content,
         type: 'CHAT',
-        time: new Date().toLocaleTimeString([], {
-            hour: '2-digit',
-            minute: '2-digit'
-        })
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        date: new Date().toDateString(),
+        status: 'sent'
     }));
 
     messageInput.value = '';
@@ -69,45 +69,88 @@ function sendMessage(event) {
 /* ---------- RECEIVE MESSAGE ---------- */
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
+
+    /* DATE SEPARATOR */
+    if (message.date !== lastDateLabel) {
+        var dateDivider = document.createElement('li');
+        dateDivider.classList.add('date-divider');
+        dateDivider.textContent = formatDateLabel(message.date);
+        messageArea.appendChild(dateDivider);
+        lastDateLabel = message.date;
+        lastSender = null;
+    }
+
     var li = document.createElement('li');
 
-    // JOIN / LEAVE messages
     if (message.type === 'JOIN' || message.type === 'LEAVE') {
         li.classList.add('event-message');
         li.textContent =
-            message.sender +
-            (message.type === 'JOIN' ? ' joined the chat' : ' left the chat');
+            message.sender + (message.type === 'JOIN' ? ' joined' : ' left');
+        messageArea.appendChild(li);
+        return;
     }
-    // CHAT messages
-    else {
-        li.classList.add('chat-message');
-        if (message.sender === username) {
-            li.classList.add('self');
-        }
 
-        // sender name
+    li.classList.add('chat-message');
+    var isSelf = message.sender === username;
+    if (isSelf) li.classList.add('self');
+
+    /* HIDE NAME IF SAME SENDER */
+    if (message.sender !== lastSender) {
         var sender = document.createElement('div');
         sender.classList.add('sender-name');
         sender.textContent = message.sender;
-
-        // bubble
-        var bubble = document.createElement('div');
-        bubble.classList.add('bubble');
-        bubble.textContent = message.content;
-
-        // timestamp BELOW message
-        var time = document.createElement('div');
-        time.classList.add('timestamp');
-        time.textContent = message.time || '';
-
         li.appendChild(sender);
-        li.appendChild(bubble);
-        li.appendChild(time);
+        lastSender = message.sender;
     }
+
+    var bubble = document.createElement('div');
+    bubble.classList.add('bubble');
+    bubble.textContent = message.content;
+
+    var meta = document.createElement('div');
+    meta.classList.add('meta');
+
+    var time = document.createElement('span');
+    time.textContent = message.time;
+
+    var ticks = document.createElement('span');
+    ticks.classList.add('ticks');
+    ticks.textContent = isSelf ? '✔✔' : '';
+
+    meta.appendChild(time);
+    meta.appendChild(ticks);
+
+    bubble.appendChild(meta);
+    li.appendChild(bubble);
 
     messageArea.appendChild(li);
     messageArea.scrollTop = messageArea.scrollHeight;
 }
+
+/* ---------- DATE LABEL ---------- */
+function formatDateLabel(dateStr) {
+    var today = new Date().toDateString();
+    var yesterday = new Date(Date.now() - 86400000).toDateString();
+
+    if (dateStr === today) return 'Today';
+    if (dateStr === yesterday) return 'Yesterday';
+    return dateStr;
+}
+
+/* ---------- EMOJI PICKER ---------- */
+var emojiBtn = document.querySelector('#emoji-btn');
+var emojiBox = document.querySelector('#emoji-box');
+
+emojiBtn.addEventListener('click', () => {
+    emojiBox.classList.toggle('hidden');
+});
+
+emojiBox.addEventListener('click', (e) => {
+    if (e.target.classList.contains('emoji')) {
+        messageInput.value += e.target.textContent;
+        messageInput.focus();
+    }
+});
 
 /* ---------- EVENTS ---------- */
 usernameForm.addEventListener('submit', connect);
